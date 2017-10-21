@@ -34,18 +34,5 @@ class UsersController < ApplicationController
   end
 
   def logout
-    @user = User.find_by(uid: session[:uid], provider: session[:provider] )
-
-    if @user
-      session[:uid] = nil
-      session[:provider] = nil
-      flash[:success] = "Goodbye #{@user.name}"
-      response_code = :success
-    else
-      flash[:error] = "You are already logged out"
-      response_code = :not_found
-    end
-    redirect_to root_path, response_code
   end
-
 end
