@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   get '/auth/:github/callback', to: 'users#login', as: 'login'
   delete '/users/logout', to: 'users#logout', as: 'logout'
 
+  root to: 'users#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -12,6 +12,25 @@ class UsersController < ApplicationController
   end
 
   def login
+    auth_hash = request.env['omniauth.auth']
+    ap auth_hash
+
+    @user = User.find_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+
+    if @user
+      session[:uid] = @user.uid
+      session[:provider] = @user.provider
+      flash[:success] = "Welcome back #{@user.name}"
+    else
+      @user = User.new(name: auth_hash['info']['nickname'], uid: auth_hash['uid'], provider: auth_hash['provider'])
+
+      if @user.save
+        flash[:success] = "Welcome #{@user.name}"
+      else
+        flash[:error] = "Could not log in user"
+      end
+    end
+    redirect_to root_path
   end
 
   def logout
