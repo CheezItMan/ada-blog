@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe BlogsController do
+describe PostsController do
   # it "should get index" do
   #   get blogs_index_url
   #   value(response).must_be :success?
