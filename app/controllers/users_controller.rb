@@ -45,7 +45,7 @@ class UsersController < ApplicationController
       flash[:error] = "You are already logged out"
       response_code = :not_found
     end
-    redirect_to root_path, response_code
+    redirect_to root_path
   end
 
 end

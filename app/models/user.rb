@@ -3,4 +3,6 @@ class User < ApplicationRecord
   validates :uid, presence: true
   validates :provider, presence: true
   validates :uid, uniqueness: {scope: :provider}
+
+  has_many :posts
 end
